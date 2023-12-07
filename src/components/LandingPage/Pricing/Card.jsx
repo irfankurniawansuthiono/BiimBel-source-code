@@ -11,8 +11,12 @@ import {
 } from "@chakra-ui/react";
 import { CheckIcon } from "@chakra-ui/icons";
 import { myTheme } from "../../../theme/theme";
-
-export default function Card({ time, price, text, link }) {
+import useUserStore from "../../LoggedIn/userData";
+export default function Card({ loginWithGoogle, time, price, text }) {
+  const handleButtonClick = () => {
+    loginWithGoogle();
+  };
+  const userData = useUserStore((state) => state.userData);
   return (
     <Box
       w={"full"}
@@ -42,7 +46,7 @@ export default function Card({ time, price, text, link }) {
         <Stack direction={"row"} align={"center"} justify={"center"}>
           <Text fontSize={"3xl"}>IDR</Text>
           <Text fontSize={"6xl"} fontWeight={800}>
-            {price}K
+            {price}
           </Text>
           <Text color={"gray.500"}>/month</Text>
         </Stack>
@@ -69,10 +73,33 @@ export default function Card({ time, price, text, link }) {
           ))}
         </List>
 
-        <Link href={link} isExternal>
+        {userData ? (
+          <Link href={"/subscribe"}>
+            <Button
+              mt={10}
+              w={"full"}
+              bg={useColorModeValue(
+                myTheme.colors.lightMode.primary,
+                myTheme.colors.darkMode.primary
+              )}
+              color={"white"}
+              rounded={"xl"}
+              boxShadow={"0 5px 20px 0px rgb(244 42 96 / 43%)"}
+              _hover={{
+                opacity: 0.8,
+              }}
+              _focus={{
+                bg: "gray.500",
+              }}
+            >
+              Buy Now
+            </Button>
+          </Link>
+        ) : (
           <Button
             mt={10}
             w={"full"}
+            onClick={handleButtonClick}
             bg={useColorModeValue(
               myTheme.colors.lightMode.primary,
               myTheme.colors.darkMode.primary
@@ -89,7 +116,7 @@ export default function Card({ time, price, text, link }) {
           >
             Buy Now
           </Button>
-        </Link>
+        )}
       </Box>
     </Box>
   );

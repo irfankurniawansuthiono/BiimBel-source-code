@@ -17,7 +17,7 @@ export default function LandingPage({ loginWithGoogle }) {
           <About />
         </section>
         <section id="pricing">
-          <Pricing />
+          <Pricing loginWithGoogle={loginWithGoogle} />
         </section>
         <section id="contact">
           <Contact />

@@ -23,6 +23,7 @@ import {
 } from "@chakra-ui/react";
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 import useUserStore from "../userData";
+import useUserDBStore from "../dbUserData";
 import {
   FiHome,
   FiStar,
@@ -38,8 +39,8 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 
 const LinkItems = [
   { name: "Home", icon: FiHome, href: "/dashboard" },
-  { name: "Videos", icon: FiTv, href: "/dashboard/videos" },
-  { name: "Favorites", icon: FiStar, href: "#" },
+  { name: "Videos", icon: FiTv, href: "/videos" },
+  { name: "Subscribe plans", icon: FiStar, href: "/subscribe" },
   { name: "Settings", icon: FiSettings, href: "#" },
 ];
 
@@ -134,6 +135,7 @@ const MobileNav = ({ onOpen, onToggle, isOpen, ...rest }) => {
   const signOut = async () => {
     await supabase.auth.signOut();
     useUserStore.setState({ user: null });
+    useUserDBStore.setState({ userDB: null });
     navigate("/");
   };
   const data = useUserStore((state) => state.user);
@@ -221,9 +223,7 @@ const MobileNav = ({ onOpen, onToggle, isOpen, ...rest }) => {
               borderColor={useColorModeValue("gray.200", "gray.700")}
             >
               <MenuDivider />
-              <MenuItem onClick={() => navigate("/dashboard/profile")}>
-                Profile
-              </MenuItem>
+              <MenuItem onClick={() => navigate("/profile")}>Profile</MenuItem>
               <MenuItem onClick={() => signOut()}>Sign out</MenuItem>
             </MenuList>
           </Menu>

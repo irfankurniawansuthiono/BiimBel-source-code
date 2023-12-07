@@ -9,25 +9,22 @@ import {
 } from "@chakra-ui/react";
 import { myTheme } from "../../../theme/theme";
 import Card from "./Card";
-export default function CoursePrice() {
+export default function CoursePrice({ loginWithGoogle }) {
   const LEVELS = [
     {
       time: "1 WEEK",
       price: 60,
       text: ["lorem1", "lorem2", "lorem3"],
-      link: "#",
     },
     {
       time: "1 MONTH",
       price: 150,
       text: ["lorem1", "lorem2", "lorem3"],
-      link: "#",
     },
     {
       time: "1 YEAR",
       price: 800,
       text: ["lorem1", "lorem2", "lorem3"],
-      link: "#",
     },
   ];
   return (
@@ -54,7 +51,11 @@ export default function CoursePrice() {
       <Flex alignItems={"center"} justifyContent={"center"} mt={6}>
         <SimpleGrid columns={{ base: 1, lg: 3 }} spacing={20}>
           {LEVELS.map((level) => (
-            <Card key={level.time} {...level} />
+            <Card
+              key={level.time}
+              loginWithGoogle={loginWithGoogle}
+              {...level}
+            />
           ))}
         </SimpleGrid>
       </Flex>

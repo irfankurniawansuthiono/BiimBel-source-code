@@ -5,8 +5,7 @@ import fetchUserData from "../../../utils/fetchUserData";
 import fetchFreeVideos from "../../../utils/fetchFreeVideos";
 import VideosComponent from "./VideosComponent";
 import useFreeVideosDB from "../dbFreeVideosData";
-import { SimpleGrid, Flex } from "@chakra-ui/react";
-import { Text } from "@chakra-ui/react";
+import { SimpleGrid, Flex, Button, Text, Box } from "@chakra-ui/react";
 import LoadingLoggedIn from "../../Loading/LoadingLoggedIn";
 import { myTheme } from "../../../theme/theme";
 export default function NotSubscribedVideos() {
@@ -49,9 +48,17 @@ export default function NotSubscribedVideos() {
             YOU ARE NOT SUBSCRIBED TO OUR PLANS
           </Text>
           <Text fontWeight={"bold"}>This is just a free videos!</Text>
-          <Text align={"left"}>
-            please buy subscription to unlock more part of the tutorial videos!
-          </Text>
+          <Box>
+            <Button
+              as={"a"}
+              href={"/subscribe"}
+              variant={"solid"}
+              shadow={"lg"}
+              colorScheme={"red"}
+            >
+              Subscribe to our plans here
+            </Button>
+          </Box>
           <SimpleGrid columns={{ base: 1, md: 2, xl: 3 }} spacing={5}>
             {freeVideosDB.map((video) => (
               <VideosComponent

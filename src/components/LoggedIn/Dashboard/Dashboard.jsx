@@ -21,6 +21,7 @@ export default function Dashboard() {
     const userDataDB = async () => {
       const userDataDB = await fetchUserData(data.id);
       useUserDBStore.setState({ userDB: userDataDB });
+
       setIsLoadingDB(false);
     };
     const videosDataDB = async () => {

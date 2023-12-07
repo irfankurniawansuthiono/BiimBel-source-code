@@ -9,14 +9,14 @@ import useUserStore from "./components/LoggedIn/userData";
 import Videos from "./components/LoggedIn/Videos/Videos";
 import VideosDetails from "./components/LoggedIn/Videos/VideosDetails/VideosDetails";
 import Profile from "./components/LoggedIn/Profile/Profile";
+import SubscribePlans from "./components/LoggedIn/SubscribePlans/SubscribePlans";
 import Error404 from "./pages/PageNotFound";
 function App() {
   const loginWithGoogle = async () => {
     await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
-        redirectTo:
-          import.meta.env.VERCEL_URL || "http://localhost:5173/dashboard",
+        redirectTo: "https://biimbel.vercel.app/dashboard",
       },
     });
   };
@@ -26,7 +26,7 @@ function App() {
     const data = async () => {
       const dataUser = await supabase.auth.getUser();
       if (dataUser.data.user) {
-        useUserStore.setState({ user: dataUser.data.user });
+        useUserStore.setState({ userData: dataUser.data.user });
         setIsLoading(false);
       } else {
         setIsLoading(false);
@@ -60,6 +60,10 @@ function App() {
             <Route
               path="/profile"
               element={<PrivateRoute loggedIn={<Profile />} />}
+            />
+            <Route
+              path="/subscribe"
+              element={<PrivateRoute loggedIn={<SubscribePlans />} />}
             />
             <Route path="/*" element={<Error404 />} />
           </Routes>
