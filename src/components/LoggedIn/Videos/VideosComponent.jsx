@@ -12,7 +12,7 @@ export default function VideosComponent(props) {
   return (
     <Box
       as={"a"}
-      href={`/videos/details?id=${props.link}`}
+      href={`/dashboard/videos/details?id=${props.link}`}
       cursor={"pointer"}
       transition={"all 0.3s ease"}
       _hover={{

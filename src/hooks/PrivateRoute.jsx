@@ -1,6 +1,7 @@
 // PrivateRoute.js
 import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
+
 import { supabase } from "../lib/helper/supabase";
 import Loading from "../components/Loading/Loading";
 import useUserStore from "../components/LoggedIn/userData";
