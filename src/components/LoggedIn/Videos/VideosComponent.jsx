@@ -12,7 +12,7 @@ export default function VideosComponent(props) {
   return (
     <Box
       as={"a"}
-      href={`/dashboard/videos/details?id=${props.link}`}
+      href={`/videos/details?id=${props.link}`}
       cursor={"pointer"}
       transition={"all 0.3s ease"}
       _hover={{
@@ -33,9 +33,8 @@ export default function VideosComponent(props) {
           height="100%"
           src={props.link}
           title={props.title}
-          frameBorder="0"
+          frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowFullScreen
         ></iframe>
       </Box>
       <Stack>
