@@ -15,7 +15,8 @@ function App() {
     await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
-        redirectTo: "https://biimbel.vercel.app/dashboard",
+        redirectTo:
+          import.meta.env.VERCEL_URL || "http://localhost:5173/dashboard",
       },
     });
   };

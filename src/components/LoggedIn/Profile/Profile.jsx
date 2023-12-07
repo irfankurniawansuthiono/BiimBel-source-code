@@ -7,24 +7,23 @@ import {
   Icon,
   useColorModeValue,
   VStack,
-  Badge,
   Card,
-  Image,
   chakra,
 } from "@chakra-ui/react";
-import { motion } from "framer-motion";
-import PageLoggedIn from "../PageLoggedIn/PageLoggedIn";
-import useUserDBStore from "../dbUserData";
-import useUserStore from "../userData";
-import fetchUserData from "../../../utils/fetchUserData";
 import {
   MdCall,
   MdDriveFileRenameOutline,
   MdOutlineMail,
   MdOutlinePersonOutline,
 } from "react-icons/md";
+import { motion } from "framer-motion";
+
+
+import PageLoggedIn from "../PageLoggedIn/PageLoggedIn";
+import useUserDBStore from "../dbUserData";
+import useUserStore from "../userData";
+import fetchUserData from "../../../utils/fetchUserData";
 import { myTheme } from "../../../theme/theme";
-import { useNavigate } from "react-router-dom";
 import LoadingLoggedIn from "../../Loading/LoadingLoggedIn";
 
 const MotionIcon = chakra(motion.div);
