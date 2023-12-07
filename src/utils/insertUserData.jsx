@@ -7,6 +7,7 @@ export default async function insertUserData(data) {
         id: data.id,
         name: data.user_metadata.name,
         email: data.user_metadata.email,
+        phone: data.user_metadata.phone,
       },
     ],
     { onConflict: ["id"], ignoreDuplicates: true }

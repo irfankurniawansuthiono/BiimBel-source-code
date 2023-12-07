@@ -11,6 +11,14 @@ import { myTheme } from "../../../theme/theme";
 export default function VideosComponent(props) {
   return (
     <Box
+      as={"a"}
+      href={`/videos/details?id=${props.link}`}
+      cursor={"pointer"}
+      transition={"all 0.3s ease"}
+      _hover={{
+        transform: "scale(1.05)",
+        position: "relative",
+      }}
       maxW={"300px"}
       w={"full"}
       // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -26,6 +34,7 @@ export default function VideosComponent(props) {
           src={props.link}
           title={props.title}
           frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowfullscreen
         ></iframe>
       </Box>

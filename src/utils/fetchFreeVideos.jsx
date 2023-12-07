@@ -1,11 +1,11 @@
 import { supabase } from "../lib/helper/supabase";
-const fetchUserData = async (userId) => {
+const fetchFreeVideos = async () => {
   try {
     const { data, error } = await supabase
-      .from("users")
+      .from("videos")
       .select("*")
-      .eq("id", userId)
-      .single();
+      .eq("free", true)
+      .order("created_at", { ascending: false });
 
     if (error) {
       throw error;
@@ -13,9 +13,9 @@ const fetchUserData = async (userId) => {
 
     return data;
   } catch (error) {
-    console.error("Error fetching user data:", error.text);
+    console.error("Error fetching videos:", error.message);
     throw error;
   }
 };
 
-export default fetchUserData;
+export default fetchFreeVideos;

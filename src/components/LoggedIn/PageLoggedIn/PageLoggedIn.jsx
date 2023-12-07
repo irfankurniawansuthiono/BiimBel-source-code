@@ -23,23 +23,23 @@ import {
 } from "@chakra-ui/react";
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 import useUserStore from "../userData";
-
 import {
   FiHome,
-  FiCompass,
   FiStar,
   FiSettings,
   FiMenu,
   FiChevronDown,
   FiTv,
+  FiChevronsLeft,
+  FiChevronsRight,
 } from "react-icons/fi";
 import { supabase } from "../../../lib/helper/supabase";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 
 const LinkItems = [
-  { name: "Home", icon: FiHome, href: "/dashboard", status },
+  { name: "Home", icon: FiHome, href: "/dashboard" },
   { name: "Videos", icon: FiTv, href: "/videos" },
-  { name: "Playlist", icon: FiStar, href: "#" },
+  { name: "Favorites", icon: FiStar, href: "#" },
   { name: "Settings", icon: FiSettings, href: "#" },
 ];
 
@@ -47,7 +47,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
   const navigate = useNavigate();
   return (
     <Box
-      transition="3s ease"
+      transition="3s ease-in-out"
       bg={useColorModeValue(
         myTheme.colors.lightMode.background,
         myTheme.colors.darkMode.background
@@ -129,7 +129,7 @@ const NavItem = ({ icon, children, href, ...rest }) => {
   );
 };
 
-const MobileNav = ({ onOpen, ...rest }) => {
+const MobileNav = ({ onOpen, onToggle, isOpen, ...rest }) => {
   const navigate = useNavigate();
   const signOut = async () => {
     await supabase.auth.signOut();
@@ -144,6 +144,10 @@ const MobileNav = ({ onOpen, ...rest }) => {
       ml={{ base: 0, md: 60 }}
       px={{ base: 4, md: 4 }}
       height={"20"}
+      right={"0"}
+      left={"0"}
+      pos="fixed"
+      zIndex={9999999}
       alignItems="center"
       bg={useColorModeValue(
         myTheme.colors.lightMode.background,
@@ -156,10 +160,17 @@ const MobileNav = ({ onOpen, ...rest }) => {
     >
       <IconButton
         display={{ base: "flex", md: "none" }}
-        onClick={onOpen}
+        onClick={onToggle}
         variant="outline"
         aria-label="open menu"
-        icon={<FiMenu />}
+        transition={"all 0.3s"}
+        icon={
+          isOpen ? (
+            <Icon as={FiChevronsLeft} boxSize={8} />
+          ) : (
+            <Icon as={FiChevronsRight} boxSize={8} />
+          )
+        }
       />
       <Text
         textAlign={"left"}
@@ -210,7 +221,7 @@ const MobileNav = ({ onOpen, ...rest }) => {
               borderColor={useColorModeValue("gray.200", "gray.700")}
             >
               <MenuDivider />
-              <MenuItem>Profile</MenuItem>
+              <MenuItem onClick={() => navigate("/profile")}>Profile</MenuItem>
               <MenuItem onClick={() => signOut()}>Sign out</MenuItem>
             </MenuList>
           </Menu>
@@ -221,8 +232,7 @@ const MobileNav = ({ onOpen, ...rest }) => {
 };
 
 const PageLoggedIn = ({ children }) => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
-
+  const { isOpen, onOpen, onClose, onToggle } = useDisclosure();
   return (
     <Box
       minH="100vh"
@@ -241,14 +251,14 @@ const PageLoggedIn = ({ children }) => {
         onClose={onClose}
         returnFocusOnClose={false}
         onOverlayClick={onClose}
-        size="full"
+        size={"xs"}
       >
         <DrawerContent>
           <SidebarContent onClose={onClose} />
         </DrawerContent>
       </Drawer>
       {/* mobilenav */}
-      <MobileNav onOpen={onOpen} />
+      <MobileNav onOpen={onOpen} isOpen={isOpen} onToggle={onToggle} />
       <Box ml={{ base: 0, md: 60 }} p="4">
         {children}
       </Box>

@@ -7,6 +7,8 @@ import { useEffect, useState } from "react";
 import Loading from "./components/Loading/Loading";
 import useUserStore from "./components/LoggedIn/userData";
 import Videos from "./components/LoggedIn/Videos/Videos";
+import VideosDetails from "./components/LoggedIn/Videos/VideosDetails/VideosDetails";
+import Profile from "./components/LoggedIn/Profile/Profile";
 import Error404 from "./pages/PageNotFound";
 function App() {
   const loginWithGoogle = async () => {
@@ -47,8 +49,16 @@ function App() {
               element={<PrivateRoute loggedIn={<Dashboard />} />}
             />
             <Route
+              path="/videos/details"
+              element={<PrivateRoute loggedIn={<VideosDetails />} />}
+            />
+            <Route
               path="/videos"
               element={<PrivateRoute loggedIn={<Videos />} />}
+            />
+            <Route
+              path="/profile"
+              element={<PrivateRoute loggedIn={<Profile />} />}
             />
             <Route path="/*" element={<Error404 />} />
           </Routes>

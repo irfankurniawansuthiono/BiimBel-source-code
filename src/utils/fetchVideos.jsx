@@ -5,7 +5,7 @@ const fetchVideos = async () => {
     const { data, error } = await supabase
       .from("videos")
       .select("*")
-      .order("created_at", { ascending: false });
+      .order("id");
 
     if (error) {
       throw error;

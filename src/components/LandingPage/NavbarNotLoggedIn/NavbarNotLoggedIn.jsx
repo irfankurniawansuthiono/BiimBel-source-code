@@ -18,6 +18,7 @@ import { FaGoogle, FaArrowRight } from "react-icons/fa";
 
 import useUserStore from "../../LoggedIn/userData";
 import { useNavigate } from "react-router-dom";
+import { BsBox2Fill } from "react-icons/bs";
 export default function NavbarNotLoggedIn({ loginWithGoogle }) {
   const { isOpen, onToggle } = useDisclosure();
   const { colorMode, toggleColorMode } = useColorMode();
@@ -155,7 +156,6 @@ const DesktopNav = () => {
     myTheme.colors.lightMode.textHover,
     myTheme.colors.darkMode.textHover
   );
-  const location = useLocation();
   return (
     <Stack direction={"row"} spacing={4} align={"center"}>
       {NAV_ITEMS.map((navItem) => (
@@ -166,15 +166,11 @@ const DesktopNav = () => {
             px={5}
             href={navItem.href ?? "#"}
             fontSize={"md"}
+            data-to-scrollspy-id={navItem.dataToScrollSpyId}
             fontWeight={600}
-            color={location.hash === navItem.href ? "white" : linkColor}
+            color={linkColor}
             transition={"all .3s ease"}
             borderRadius={"3xl"}
-            bg={
-              location.hash === navItem.href
-                ? myTheme.colors.lightMode.primary
-                : "none"
-            }
             _hover={{
               textDecoration: "none",
               backgroundColor: myTheme.colors.lightMode.backgroundHover,
@@ -200,14 +196,18 @@ const MobileNav = () => {
       display={{ md: "none" }}
     >
       {NAV_ITEMS.map((navItem) => (
-        <MobileNavItem key={navItem.label} {...navItem} />
+        <MobileNavItem
+          key={navItem.label}
+          data-to-scrollspy-id={navItem.dataToScrollSpyId}
+          {...navItem}
+        />
       ))}
     </Stack>
   );
 };
 
-const MobileNavItem = ({ label, children, href }) => {
-  const { isOpen, onToggle } = useDisclosure();
+const MobileNavItem = ({ label, children, href, dataToScrollSpyId }) => {
+  const { isOpen, onToggle, onClose } = useDisclosure();
   const linkHoverColor = useColorModeValue(
     myTheme.colors.lightMode.textHover,
     myTheme.colors.darkMode.textHover
@@ -216,44 +216,54 @@ const MobileNavItem = ({ label, children, href }) => {
     myTheme.colors.lightMode.textColor,
     myTheme.colors.darkMode.textColor
   );
-  const location = useLocation();
+
   return (
-    <Stack spacing={3} onClick={children && onToggle}>
-      <Box
-        py={2}
-        px={2}
-        as="a"
-        href={href ?? "#"}
-        justifyContent="space-between"
-        transition={"all .3s ease"}
-        borderRadius={"3xl"}
-        alignItems="center"
-        color={location.hash === href ? "white" : linkColor}
-        bg={location.hash === href ? myTheme.colors.lightMode.primary : "none"}
-        _hover={{
-          textDecoration: "none",
-          backgroundColor: myTheme.colors.lightMode.primary,
-          color: linkHoverColor,
-        }}
-        _active={{
-          backgroundColor: myTheme.colors.lightMode.primary,
-        }}
-      >
-        <Text fontWeight={600}>{label}</Text>
-      </Box>
+    <Stack onClick={children && onToggle} spacing={4}>
+      <Flex w={"full"} py={1}>
+        <Box
+          w={"full"}
+          py={2}
+          onClick={onClose}
+          px={2}
+          as="a"
+          href={href ?? "#"}
+          transition={"all .3s ease"}
+          borderRadius={"3xl"}
+          data-to-scrollspy-id={dataToScrollSpyId}
+          alignItems="center"
+          color={linkColor}
+          _hover={{
+            textDecoration: "none",
+            backgroundColor: myTheme.colors.lightMode.primary,
+            color: linkHoverColor,
+          }}
+          _active={{
+            backgroundColor: myTheme.colors.lightMode.primary,
+          }}
+        >
+          <Text fontWeight={600}>{label}</Text>
+        </Box>
+      </Flex>
 
       <Collapse in={isOpen} animateOpacity style={{ marginTop: "0!important" }}>
         <Stack
-          mt={2}
           pl={4}
+          gap={10}
           borderLeft={1}
+          data-to-scrollspy-id={dataToScrollSpyId}
           borderStyle={"solid"}
           borderColor={useColorModeValue("gray.200", "gray.700")}
           align={"start"}
         >
           {children &&
             children.map((child) => (
-              <Box as="a" key={child.label} py={2} href={child.href}>
+              <Box
+                as="a"
+                key={child.label}
+                py={2}
+                href={child.href}
+                data-to-scrollspy-id={child.dataToScrollSpyId}
+              >
                 {child.label}
               </Box>
             ))}
@@ -267,17 +277,21 @@ const NAV_ITEMS = [
   {
     label: "Home",
     href: "#home",
+    dataToScrollSpyId: "home",
   },
   {
     label: "About",
     href: "#about",
+    dataToScrollSpyId: "about",
   },
   {
     label: "Pricing",
     href: "#pricing",
+    dataToScrollSpyId: "pricing",
   },
   {
     label: "Contact",
     href: "#contact",
+    dataToScrollSpyId: "contact",
   },
 ];

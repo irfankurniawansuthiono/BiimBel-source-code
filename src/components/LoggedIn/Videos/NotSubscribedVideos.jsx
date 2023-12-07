@@ -1,19 +1,18 @@
-import PageLoggedIn from "../PageLoggedIn/PageLoggedIn";
 import { useEffect, useState } from "react";
 import useUserStore from "../userData";
 import useUserDBStore from "../dbUserData";
 import fetchUserData from "../../../utils/fetchUserData";
-import fetchVideos from "../../../utils/fetchVideos";
-import LoadingLoggedIn from "../../Loading/LoadingLoggedIn";
-import { Text } from "@chakra-ui/react";
+import fetchFreeVideos from "../../../utils/fetchFreeVideos";
 import VideosComponent from "./VideosComponent";
-import useVideosDB from "../dbVideosData";
-import NotSubscribedVideos from "./notSubscribedVideos";
+import useFreeVideosDB from "../dbFreeVideosData";
 import { SimpleGrid, Flex } from "@chakra-ui/react";
-export default function Videos() {
+import { Text } from "@chakra-ui/react";
+import LoadingLoggedIn from "../../Loading/LoadingLoggedIn";
+import { myTheme } from "../../../theme/theme";
+export default function NotSubscribedVideos() {
   const userData = useUserStore((state) => state.user);
   const userDataDB = useUserDBStore((state) => state.userDB);
-  const videosDB = useVideosDB((state) => state.videosDB);
+  const freeVideosDB = useFreeVideosDB((state) => state.freeVideosDB);
   const [user, setUser] = useState(null);
   const [videos, setVideos] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -27,9 +26,9 @@ export default function Videos() {
           useUserDBStore.setState({ userDB: userDataResult });
 
           // Fetch videos data
-          const videosData = await fetchVideos();
+          const videosData = await fetchFreeVideos();
           setVideos(videosData);
-          useVideosDB.setState({ videosDB: videosData });
+          useFreeVideosDB.setState({ freeVideosDB: videosData });
           setIsLoading(false);
         }
       } catch (error) {
@@ -40,24 +39,21 @@ export default function Videos() {
     fetchData();
   }, []);
   return (
-    <PageLoggedIn>
+    <Flex justifyContent={"center"} mt={"20"}>
       {isLoading ? (
+        // Menampilkan indikator loading jika sedang loading
         <LoadingLoggedIn />
-      ) : userDataDB.subscription ? (
-        <Flex
-          justifyContent={"center"}
-          mt={"20"}
-          flexDirection={"column"}
-          alignItems={"center"}
-          gap={5}
-        >
+      ) : freeVideosDB && freeVideosDB.length > 0 ? (
+        <Flex flexDirection={"column"} alignItems={"center"} gap={5}>
           <Text fontWeight={"bold"} color={"Red"}>
-            YOU ARE SUBSCRIBED TO OUR PLANS
+            YOU ARE NOT SUBSCRIBED TO OUR PLANS
           </Text>
-          <Text fontWeight={"bold"}>Congrats! you unlock all videos!</Text>
-          <Text align={"left"}>thank you for buying our subscription</Text>
+          <Text fontWeight={"bold"}>This is just a free videos!</Text>
+          <Text align={"left"}>
+            please buy subscription to unlock more part of the tutorial videos!
+          </Text>
           <SimpleGrid columns={{ base: 1, md: 2, xl: 3 }} spacing={5}>
-            {videosDB.map((video) => (
+            {freeVideosDB.map((video) => (
               <VideosComponent
                 key={video.id}
                 link={video.link_video}
@@ -70,8 +66,9 @@ export default function Videos() {
           </SimpleGrid>
         </Flex>
       ) : (
-        <NotSubscribedVideos />
+        // Menampilkan pesan jika tidak ada data
+        <Text mt={"20"}>No videos available.</Text>
       )}
-    </PageLoggedIn>
+    </Flex>
   );
 }

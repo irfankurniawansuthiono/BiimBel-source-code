@@ -1,10 +1,10 @@
 import { supabase } from "../lib/helper/supabase";
-const fetchUserData = async (userId) => {
+const fetchDetailsVideos = async (link) => {
   try {
     const { data, error } = await supabase
-      .from("users")
+      .from("videos")
       .select("*")
-      .eq("id", userId)
+      .eq("link_video", link)
       .single();
 
     if (error) {
@@ -13,9 +13,9 @@ const fetchUserData = async (userId) => {
 
     return data;
   } catch (error) {
-    console.error("Error fetching user data:", error.text);
+    console.error("Error fetching videos:", error.message);
     throw error;
   }
 };
 
-export default fetchUserData;
+export default fetchDetailsVideos;
