@@ -9,7 +9,7 @@ import useUserDBStore from "../dbUserData";
 import fetchUserData from "../../../utils/fetchUserData";
 import insertUserData from "../../../utils/insertUserData";
 import LoadingLoggedIn from "../../Loading/LoadingLoggedIn";
-import VideosComponent from "../Videos/VideosComponent";
+import VideosHistory from "./VideosHistory";
 export default function Dashboard() {
   const data = useUserStore((state) => state.user);
   const videosDB = useVideosDB((state) => state.videosDB);
@@ -61,7 +61,7 @@ export default function Dashboard() {
             {isLoadingDB ? (
               <LoadingLoggedIn />
             ) : (
-              <SimpleGrid columns={{ base: 1, md: 2, xl: 3 }} spacing={5}>
+              <SimpleGrid columns={{ base: 1, lg: 3 }} spacing={5} mt={10}>
                 {dataDB.history_videos && dataDB.history_videos.length > 0 ? (
                   dataDB.history_videos.map((historyVideoId) => {
                     const videoData = videosDB.find(
@@ -71,7 +71,7 @@ export default function Dashboard() {
                     if (videoData) {
                       return (
                         <>
-                          <VideosComponent
+                          <VideosHistory
                             key={videoData.title_video}
                             title={videoData.title_video}
                             description={videoData.description_video}
