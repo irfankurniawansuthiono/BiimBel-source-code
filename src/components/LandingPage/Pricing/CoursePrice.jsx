@@ -14,16 +14,19 @@ export default function CoursePrice({ loginWithGoogle }) {
     {
       time: "1 WEEK",
       price: 60,
+      subscriptionTime: "/week",
       text: ["lorem1", "lorem2", "lorem3"],
     },
     {
       time: "1 MONTH",
       price: 150,
+      subscriptionTime: "/month",
       text: ["lorem1", "lorem2", "lorem3"],
     },
     {
       time: "1 YEAR",
       price: 800,
+      subscriptionTime: "/year",
       text: ["lorem1", "lorem2", "lorem3"],
     },
   ];

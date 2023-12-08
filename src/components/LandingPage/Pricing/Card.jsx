@@ -12,7 +12,13 @@ import {
 import { CheckIcon } from "@chakra-ui/icons";
 import { myTheme } from "../../../theme/theme";
 import useUserStore from "../../LoggedIn/userData";
-export default function Card({ loginWithGoogle, time, price, text }) {
+export default function Card({
+  loginWithGoogle,
+  time,
+  price,
+  text,
+  subscriptionTime,
+}) {
   const handleButtonClick = () => {
     loginWithGoogle();
   };
@@ -44,11 +50,11 @@ export default function Card({ loginWithGoogle, time, price, text }) {
           {time}
         </Text>
         <Stack direction={"row"} align={"center"} justify={"center"}>
-          <Text fontSize={"3xl"}>IDR</Text>
+          <Text fontSize={"3xl"}>$</Text>
           <Text fontSize={"6xl"} fontWeight={800}>
             {price}
           </Text>
-          <Text color={"gray.500"}>/month</Text>
+          <Text color={"gray.500"}>{subscriptionTime}</Text>
         </Stack>
       </Stack>
 
