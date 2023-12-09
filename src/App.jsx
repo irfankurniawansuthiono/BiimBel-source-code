@@ -10,6 +10,7 @@ import Videos from "./components/LoggedIn/Videos/Videos";
 import VideosDetails from "./components/LoggedIn/Videos/VideosDetails/VideosDetails";
 import Profile from "./components/LoggedIn/Profile/Profile";
 import SubscribePlans from "./components/LoggedIn/SubscribePlans/SubscribePlans";
+import SucceedPayment from "./components/SucceedPayment/SucceedPayment";
 import Error404 from "./pages/PageNotFound";
 function App() {
   const loginWithGoogle = async () => {
@@ -64,6 +65,10 @@ function App() {
             <Route
               path="/subscribe"
               element={<PrivateRoute loggedIn={<SubscribePlans />} />}
+            />
+            <Route
+              path="/succeed"
+              element={<PrivateRoute loggedIn={<SucceedPayment />} />}
             />
             <Route path="/*" element={<Error404 />} />
           </Routes>
