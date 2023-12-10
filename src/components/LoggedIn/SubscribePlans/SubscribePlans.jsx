@@ -1,16 +1,25 @@
-import {
-  Box,
-  SimpleGrid,
-  Text,
-  Flex,
-  useColorModeValue,
-  Divider,
-  AbsoluteCenter,
-} from "@chakra-ui/react";
+import { Box, SimpleGrid, Text, Flex } from "@chakra-ui/react";
 import { myTheme } from "../../../theme/theme";
 import CardSubscribe from "./CardSubscribe";
 import PageLoggedIn from "../PageLoggedIn/PageLoggedIn";
+import useUserDBStore from "../dbUserData";
+import useUserStore from "../userData";
+import { useEffect, useState } from "react";
+import LoadingLoggedIn from "../../Loading/LoadingLoggedIn";
+import fetchUserData from "../../../utils/fetchUserData";
 export default function SubscribePlans({ loginWithGoogle }) {
+  const data = useUserStore((state) => state.user);
+
+  const userDataDB = useUserDBStore((state) => state.userDB);
+  const [isLoadingDB, setIsLoadingDB] = useState(true);
+  useEffect(() => {
+    const userDataDB = async () => {
+      const userDataDB = await fetchUserData(data.id);
+      useUserDBStore.setState({ userDB: userDataDB });
+      setIsLoadingDB(false);
+    };
+    userDataDB();
+  }, []);
   const LEVELS = [
     {
       time: "1 WEEK",
@@ -34,32 +43,39 @@ export default function SubscribePlans({ loginWithGoogle }) {
       href: "https://buy.stripe.com/test_8wM3g3d3RcRk9683ce",
     },
   ];
+
   return (
     <PageLoggedIn>
-      <Box
-        mt={"20"}
-        px={6}
-        pt={0}
-        pb={24}
-        color={myTheme.colors.lightMode.primary}
-        w={"full"}
-      >
-        <Text as="h3" fontSize={"xl"} align={"center"}>
-          Available Course Subscription
-        </Text>
+      {isLoadingDB ? (
+        <LoadingLoggedIn />
+      ) : userDataDB.subscription ? (
+        <Text mt={20}>You are already subscribed</Text>
+      ) : (
+        <Box
+          mt={"20"}
+          px={6}
+          pt={0}
+          pb={24}
+          color={myTheme.colors.lightMode.primary}
+          w={"full"}
+        >
+          <Text as="h3" fontSize={"xl"} align={"center"}>
+            Available Course Subscription
+          </Text>
 
-        <Flex alignItems={"center"} justifyContent={"center"} mt={6}>
-          <SimpleGrid columns={{ base: 1, lg: 3 }} spacing={20}>
-            {LEVELS.map((level) => (
-              <CardSubscribe
-                key={level.time}
-                loginWithGoogle={loginWithGoogle}
-                {...level}
-              />
-            ))}
-          </SimpleGrid>
-        </Flex>
-      </Box>
+          <Flex alignItems={"center"} justifyContent={"center"} mt={6}>
+            <SimpleGrid columns={{ base: 1, lg: 3 }} spacing={20}>
+              {LEVELS.map((level) => (
+                <CardSubscribe
+                  key={level.time}
+                  loginWithGoogle={loginWithGoogle}
+                  {...level}
+                />
+              ))}
+            </SimpleGrid>
+          </Flex>
+        </Box>
+      )}
     </PageLoggedIn>
   );
 }

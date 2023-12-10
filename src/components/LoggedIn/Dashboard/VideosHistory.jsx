@@ -38,7 +38,6 @@ export default function VideosHistory(props) {
           src={props.link}
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; "
-          allowFullScreen
         ></Box>
       </AspectRatio>
       <Flex

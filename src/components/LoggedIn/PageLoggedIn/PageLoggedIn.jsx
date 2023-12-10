@@ -1,4 +1,5 @@
 import { myTheme } from "../../../theme/theme";
+
 import {
   IconButton,
   Avatar,
@@ -38,9 +39,14 @@ import { supabase } from "../../../lib/helper/supabase";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 
 const LinkItems = [
-  { name: "Home", icon: FiHome, href: "/dashboard" },
-  { name: "Videos", icon: FiTv, href: "/videos" },
-  { name: "Subscribe plans", icon: FiStar, href: "/subscribe" },
+  { name: "Home", icon: FiHome, href: "/dashboard", id: "Home" },
+  { name: "Videos", icon: FiTv, href: "/videos", id: "Videos" },
+  {
+    name: "Subscribe plans",
+    icon: FiStar,
+    href: "/subscribe",
+    id: "Subscribe",
+  },
   { name: "Settings", icon: FiSettings, href: "#" },
 ];
 
@@ -48,6 +54,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
   const navigate = useNavigate();
   return (
     <Box
+      id={"pageLoggedIn"}
       transition="3s ease-in-out"
       bg={useColorModeValue(
         myTheme.colors.lightMode.background,
@@ -81,6 +88,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
       <Flex gap={2} flexDirection={"column"}>
         {LinkItems.map((link) => (
           <NavItem
+            id={link.id}
             key={link.name}
             icon={link.icon}
             href={link.href}
@@ -94,7 +102,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
   );
 };
 
-const NavItem = ({ icon, children, href, ...rest }) => {
+const NavItem = ({ id, icon, children, href, ...rest }) => {
   const location = useLocation();
   const linkColor = useColorModeValue(
     myTheme.colors.lightMode.textColor,
@@ -107,6 +115,7 @@ const NavItem = ({ icon, children, href, ...rest }) => {
       _focus={{ boxShadow: "none" }}
     >
       <Flex
+        id={id}
         align="center"
         p="4"
         mx="4"

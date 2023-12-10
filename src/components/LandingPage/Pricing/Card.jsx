@@ -22,7 +22,7 @@ export default function Card({
   const handleButtonClick = () => {
     loginWithGoogle();
   };
-  const userData = useUserStore((state) => state.userData);
+  const userData = useUserStore((state) => state.user);
   return (
     <Box
       w={"full"}

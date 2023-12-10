@@ -1,6 +1,8 @@
 import PageLoggedIn from "../PageLoggedIn/PageLoggedIn";
 import useUserStore from "../userData";
-import { Text, Flex, Divider, SimpleGrid, Box } from "@chakra-ui/react";
+import { driver } from "driver.js";
+import "driver.js/dist/driver.css";
+import { Text, Flex, Divider, SimpleGrid } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { myTheme } from "../../../theme/theme";
 import fetchVideos from "../../../utils/fetchVideos";
@@ -10,8 +12,10 @@ import fetchUserData from "../../../utils/fetchUserData";
 import insertUserData from "../../../utils/insertUserData";
 import LoadingLoggedIn from "../../Loading/LoadingLoggedIn";
 import VideosHistory from "./VideosHistory";
+import updateUserDBonBoarding from "../../../utils/updateUserDBOnBoarding";
 export default function Dashboard() {
   const data = useUserStore((state) => state.user);
+  const dataDB = useUserDBStore((state) => state.userDB);
   const videosDB = useVideosDB((state) => state.videosDB);
   const [videos, setVideos] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -33,7 +37,69 @@ export default function Dashboard() {
     userDataDB();
     videosDataDB();
   }, []);
-  const dataDB = useUserDBStore((state) => state.userDB);
+
+  const isDesktop = window.innerWidth >= 768;
+  useEffect(() => {
+    // Check if dataDB is not null and on_boarding is false and isDesktop
+    if (dataDB && !dataDB.on_boarding && isDesktop) {
+      const driverObj = driver({
+        showProgress: true,
+        doneBtnText: "Done",
+        steps: [
+          {
+            element: "#pageLoggedIn",
+            popover: {
+              title: "Welcome to BiimBel",
+              description: "lets take a tour about this menu first!",
+              side: "left",
+              align: "start",
+            },
+          },
+          {
+            element: "#Home",
+            popover: {
+              title: "Home Menu",
+              description: "you can check your history of videos here!",
+              side: "left",
+              align: "start",
+            },
+          },
+          {
+            element: "#Videos",
+            popover: {
+              title: "Videos Menu",
+              description:
+                "in this menu you can watch videos! there are free videos and subscription! please make sure you are subscribing to our plans!",
+              side: "left",
+              align: "start",
+            },
+          },
+          {
+            element: "#Subscribe",
+            popover: {
+              title: "Subscribe PLANS!",
+              description:
+                "in this menu you can buy subscription to unlock more part of tutorial videos!",
+              side: "left",
+              align: "start",
+            },
+          },
+          {
+            popover: {
+              title: "Happy Learning!",
+              description: "And that is all, go ahead and start learning!",
+            },
+          },
+        ],
+      });
+
+      // Check if on_boarding is defined and false before starting the tour
+      if (dataDB.on_boarding !== undefined && !dataDB.on_boarding) {
+        driverObj.drive();
+        updateUserDBonBoarding(dataDB.id, true);
+      }
+    }
+  }, [dataDB, isDesktop]);
 
   return (
     <>

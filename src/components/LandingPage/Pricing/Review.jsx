@@ -8,7 +8,7 @@ import "./Reviews.css";
 
 // import required modules
 import { Pagination, Autoplay } from "swiper/modules";
-import { Box, Flex, Text, useColorModeValue } from "@chakra-ui/react";
+import { Box, Flex, Text, useColorModeValue, Image } from "@chakra-ui/react";
 import { myTheme } from "../../../theme/theme";
 
 export default function Review() {
@@ -51,11 +51,21 @@ export default function Review() {
           modules={[Pagination, Autoplay]}
           className="mySwiper"
         >
-          <SwiperSlide>Review 1</SwiperSlide>
-          <SwiperSlide>Review 2</SwiperSlide>
-          <SwiperSlide>Review 3</SwiperSlide>
-          <SwiperSlide>Review 4</SwiperSlide>
-          <SwiperSlide>Review 5</SwiperSlide>
+          <SwiperSlide>
+            <Image src="https://media1.tenor.com/m/Fx-CHGbSA-MAAAAC/junko-touhou.gif" />
+          </SwiperSlide>
+          <SwiperSlide>
+            <Image src="https://media1.tenor.com/m/Fx-CHGbSA-MAAAAC/junko-touhou.gif" />
+          </SwiperSlide>
+          <SwiperSlide>
+            <Image src="https://media1.tenor.com/m/Fx-CHGbSA-MAAAAC/junko-touhou.gif" />
+          </SwiperSlide>
+          <SwiperSlide>
+            <Image src="https://media1.tenor.com/m/Fx-CHGbSA-MAAAAC/junko-touhou.gif" />
+          </SwiperSlide>
+          <SwiperSlide>
+            <Image src="https://media1.tenor.com/m/Fx-CHGbSA-MAAAAC/junko-touhou.gif" />
+          </SwiperSlide>
         </Swiper>
       </Box>
     </Flex>

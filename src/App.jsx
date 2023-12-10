@@ -17,7 +17,7 @@ function App() {
     await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
-        redirectTo: "https://biimbel.vercel.app/dashboard",
+        redirectTo: "https://biimbel.my.id/dashboard",
       },
     });
   };
@@ -27,7 +27,7 @@ function App() {
     const data = async () => {
       const dataUser = await supabase.auth.getUser();
       if (dataUser.data.user) {
-        useUserStore.setState({ userData: dataUser.data.user });
+        useUserStore.setState({ user: dataUser.data.user });
         setIsLoading(false);
       } else {
         setIsLoading(false);

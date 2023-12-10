@@ -24,7 +24,6 @@ export default function NavbarNotLoggedIn({ loginWithGoogle }) {
   const { colorMode, toggleColorMode } = useColorMode();
 
   const data = useUserStore((state) => state.user);
-
   const navigate = useNavigate();
 
   return (
