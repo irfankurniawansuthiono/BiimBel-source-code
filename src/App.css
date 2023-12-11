@@ -1,0 +1,61 @@
+.driver-popover.tourBiimbel {
+  background-color: #F42A60;
+}
+
+.driver-popover.tourBiimbel .driver-popover-title {
+  font-size: 20px;
+}
+
+.driver-popover.tourBiimbel .driver-popover-title,
+.driver-popover.tourBiimbel .driver-popover-description,
+.driver-popover.tourBiimbel .driver-popover-progress-text {
+  color: #fff;
+}
+
+.driver-popover.tourBiimbel button {
+  flex: 1;
+  text-align: center;
+  border: 2px solid #F42A60;
+  text-shadow: none;
+  font-size: 14px;
+  padding: 5px 8px;
+  border-radius: 6px;
+}
+
+.driver-popover.tourBiimbel button:hover {
+
+  opacity: .8;
+}
+.driver-popover.tourBiimbel .driver-popover-next-btn{
+    background-color: hsl(0, 0%, 14%);
+  color: #F42A60;
+}
+
+.driver-popover.tourBiimbel .driver-popover-navigation-btns {
+  justify-content: space-between;
+  gap: 3px;
+}
+
+.driver-popover.tourBiimbel .driver-popover-close-btn {
+  color: #444444;
+}
+
+.driver-popover.tourBiimbel .driver-popover-close-btn:hover {
+  color: #000;
+}
+
+.driver-popover.tourBiimbel .driver-popover-arrow-side-left.driver-popover-arrow {
+  border-left-color: #F42A60;
+}
+
+.driver-popover.tourBiimbel .driver-popover-arrow-side-right.driver-popover-arrow {
+  border-right-color: #F42A60;
+}
+
+.driver-popover.tourBiimbel .driver-popover-arrow-side-top.driver-popover-arrow {
+  border-top-color: #F42A60;
+}
+
+.driver-popover.tourBiimbel .driver-popover-arrow-side-bottom.driver-popover-arrow {
+  border-bottom-color: #F42A60;
+}

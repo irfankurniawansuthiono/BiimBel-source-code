@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import "./App.css";
 import LandingPage from "./pages/LandingPage";
 import Dashboard from "./components/LoggedIn/Dashboard/Dashboard";
 import PrivateRoute from "./hooks/PrivateRoute";

@@ -40,17 +40,18 @@ export default function Dashboard() {
 
   const isDesktop = window.innerWidth >= 768;
   useEffect(() => {
-    // Check if dataDB is not null and on_boarding is false and isDesktop
     if (dataDB && !dataDB.on_boarding && isDesktop) {
       const driverObj = driver({
-        showProgress: true,
+        popoverClass: "tourBiimbel",
+        showProgress: false,
+        allowClose: false,
         doneBtnText: "Done",
         steps: [
           {
             element: "#pageLoggedIn",
             popover: {
               title: "Welcome to BiimBel",
-              description: "lets take a tour about this menu first!",
+              description: "let's take a tour about this menu first!",
               side: "left",
               align: "start",
             },
@@ -93,10 +94,9 @@ export default function Dashboard() {
         ],
       });
 
-      // Check if on_boarding is defined and false before starting the tour
       if (dataDB.on_boarding !== undefined && !dataDB.on_boarding) {
         driverObj.drive();
-        updateUserDBonBoarding(dataDB.id, true);
+        // updateUserDBonBoarding(dataDB.id, true);
       }
     }
   }, [dataDB, isDesktop]);
@@ -148,7 +148,11 @@ export default function Dashboard() {
                         </>
                       );
                     } else {
-                      return null;
+                      return (
+                        <Flex w={{ base: "80vw" }} justifyContent={"center"}>
+                          <Text>failed to fetch data</Text>
+                        </Flex>
+                      );
                     }
                   })
                 ) : (
