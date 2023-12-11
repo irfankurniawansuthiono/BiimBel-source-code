@@ -96,7 +96,7 @@ export default function Dashboard() {
 
       if (dataDB.on_boarding !== undefined && !dataDB.on_boarding) {
         driverObj.drive();
-        // updateUserDBonBoarding(dataDB.id, true);
+        updateUserDBonBoarding(dataDB.id, true);
       }
     }
   }, [dataDB, isDesktop]);
