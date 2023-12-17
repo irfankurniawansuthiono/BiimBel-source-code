@@ -7,6 +7,7 @@ import {
   IconButton,
   useColorModeValue,
   Button,
+  Center,
   VStack,
   HStack,
   Link,
@@ -115,9 +116,11 @@ export default function Contact() {
                   >
                     Contact
                   </Heading>
-                  <Text mt={{ sm: 3, md: 3, lg: 5 }} color="white.500">
-                    Fill up the form to contact us
-                  </Text>
+                  <Center>
+                    <Text mt={{ sm: 3, md: 3, lg: 5 }} color="white.500">
+                      Fill up the form to contact us
+                    </Text>
+                  </Center>
                   <Box py={{ base: 5, sm: 5, md: 8, lg: 10 }}>
                     <VStack pl={0} spacing={2} alignItems="flex-end">
                       {contactButton.map((item, index) => (

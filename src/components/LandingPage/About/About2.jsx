@@ -56,9 +56,11 @@ export default function About2() {
                   fontSize={{ base: "sm", md: "lg", lg: "2xl" }}
                   align={"justify"}
                 >
-                  Fifth saying upon divide divide rule for deep their female all
-                  hath brind Days and beast greater grass signs abundantly have
-                  greater also days years under brought moveth.
+                  Biimbel is an online tutoring platform that offers various
+                  Indonesian language courses for various levels, ranging from
+                  elementary school, junior high school, high school, to adults.
+                  We are committed to providing a quality and interactive
+                  learning experience for our participants.
                 </Text>
               </Stack>
               <Flex gap={2} mt={1}>
@@ -68,7 +70,8 @@ export default function About2() {
                   color={myTheme.colors.lightMode.primary}
                 />
                 <Text>
-                  Him lights given i heaven second yielding seas gathered wear
+                  Exploring Worlds, One Page at a Time: Where Education
+                  Illuminate Minds.
                 </Text>
               </Flex>
               <Flex gap={2}>
@@ -78,7 +81,7 @@ export default function About2() {
                   color={myTheme.colors.lightMode.primary}
                 />
                 <Text>
-                  Fly female them whales fly them day deep given night.
+                  Reach Your Peak Potential: One Step at a Time Toward Success!
                 </Text>
               </Flex>
             </Stack>

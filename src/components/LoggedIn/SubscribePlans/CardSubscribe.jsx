@@ -68,7 +68,7 @@ export default function CardSubscribe({
           myTheme.colors.darkMode.textColor
         )}
       >
-        <List spacing={3}>
+        {/* <List spacing={3}>
           {text.map((item, i) => (
             <ListItem key={i}>
               <ListIcon
@@ -78,7 +78,7 @@ export default function CardSubscribe({
               {item}
             </ListItem>
           ))}
-        </List>
+        </List> */}
         <Link href={href} isExternal>
           <Button
             mt={10}

@@ -47,7 +47,7 @@ const LinkItems = [
     href: "/subscribe",
     id: "Subscribe",
   },
-  { name: "Settings", icon: FiSettings, href: "#" },
+  // { name: "Settings", icon: FiSettings, href: "#" },
 ];
 
 const SidebarContent = ({ onClose, ...rest }) => {

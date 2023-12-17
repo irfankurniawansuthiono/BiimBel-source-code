@@ -32,7 +32,7 @@ export default function Hero() {
             textAlign={"center"}
             fontSize={useBreakpointValue({ base: "1xl", md: "2xl" })}
           >
-            EVERY CHILD YEARNS TO LEARN
+            CULTIVATE YOUR LEARNING INTEREST
           </Text>
           <Text
             color={"white"}
@@ -41,12 +41,16 @@ export default function Hero() {
             lineHeight={1.2}
             fontSize={useBreakpointValue({ base: "3xl", md: "4xl" })}
           >
-            Making Your World Better With Education
+            Empower Your World Through Education
           </Text>
           <Text textAlign={"center"} color={"white"} maxW={"2xl"}>
-            Replenish seasons may male hath fruit beast were seas saw you arrie
-            said man beast whales his void unto last session for bite. Set have
-            great you'll male grass yielding yielding man
+            Like the refreshing change of seasons, let's envision a person
+            looking into the ocean of knowledge, informing us that the last
+            opportunity to grasp knowledge is right in front of us. Prepare
+            yourself for remarkable growth through our online learning
+            experience in the Indonesian language. Embrace language knowledge
+            and skills with enthusiasm through our engaging and interactive
+            courses.
           </Text>
           <Stack direction={"row"} mt={"1rem"}>
             <Link href="#pricing" style={{ textDecoration: "none" }}>

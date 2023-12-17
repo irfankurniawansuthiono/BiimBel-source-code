@@ -1,4 +1,3 @@
-import { ReactElement } from "react";
 import {
   Box,
   SimpleGrid,
@@ -10,9 +9,10 @@ import {
   useColorModeValue,
   Button,
 } from "@chakra-ui/react";
-import { FcAssistant, FcDonate, FcInTransit } from "react-icons/fc";
 import { myTheme } from "../../../theme/theme";
-
+import { IoTime } from "react-icons/io5";
+import { MdOutlineAttachMoney } from "react-icons/md";
+import { AiOutlineCheckCircle } from "react-icons/ai";
 const Feature = ({ title, text, icon }) => {
   return (
     <Stack spacing={2}>
@@ -22,7 +22,7 @@ const Feature = ({ title, text, icon }) => {
           h={16}
           align={"center"}
           justify={"center"}
-          color={"white"}
+          color={myTheme.colors.lightMode.primary}
           rounded={"full"}
           bg={"gray.200"}
           mb={1}
@@ -38,19 +38,19 @@ const Feature = ({ title, text, icon }) => {
 
 const Features = [
   {
-    icon: FcAssistant,
-    title: "Feature#1",
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    icon: IoTime,
+    title: "Flexibility",
+    text: "Online courses can be accessed from anywhere and at any time, according to your schedule and convenience. You are not bound by the typically limited schedules of face-to-face courses.",
   },
   {
-    icon: FcDonate,
-    title: "Donate",
-    text: "Biimbel with unlimited donations allows students to donate according to their ability, so they can help the tutoring center, get discounts or gifts, and support social programs.",
+    icon: MdOutlineAttachMoney,
+    title: "Cost efficiency",
+    text: "Online courses are typically more affordable than face-to-face courses. You don't need to incur expenses for transportation, meals, or other necessities.",
   },
   {
-    icon: FcInTransit,
-    title: "Instant Delivery",
-    text: "Biimbel with instant delivery makes it easy for students to start learning quickly, adjust their learning schedule according to their needs, and learn more effectively.",
+    icon: AiOutlineCheckCircle,
+    title: "Quality of content",
+    text: "Online course materials are usually of high quality and created by experts in the field. The materials are.",
   },
 ];
 export default function About1() {
@@ -71,11 +71,11 @@ export default function About1() {
               fontSize={"4xl"}
               textTransform={"uppercase"}
             >
-              Awesome Feature
+              Excellence
             </Text>
             <Text as={"p"}>
-              Set have great you male grass yielding an yielding first their
-              you're have called the abundantly fruit were man
+              Biimbel is the right choice for those of you who want to learn
+              flexibly, affordably, and with quality.
             </Text>
           </Flex>
           <Link href="#course">

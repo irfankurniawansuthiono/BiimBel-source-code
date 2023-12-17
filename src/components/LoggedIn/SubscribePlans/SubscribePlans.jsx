@@ -25,21 +25,21 @@ export default function SubscribePlans({ loginWithGoogle }) {
       time: "1 WEEK",
       price: 60,
       subscriptionTime: "/week",
-      text: ["lorem1", "lorem2", "lorem3"],
+      // text: ["lorem1", "lorem2", "lorem3"],
       href: "https://buy.stripe.com/test_28odUHe7V6sWfuw6oo",
     },
     {
       time: "1 MONTH",
       price: 150,
       subscriptionTime: "/month",
-      text: ["lorem1", "lorem2", "lorem3"],
+      // text: ["lorem1", "lorem2", "lorem3"],
       href: "https://buy.stripe.com/test_cN2bMzaVJ7x0eqsbIJ",
     },
     {
       time: "1 YEAR",
       price: 800,
       subscriptionTime: "/year",
-      text: ["lorem1", "lorem2", "lorem3"],
+      // text: ["lorem1", "lorem2", "lorem3"],
       href: "https://buy.stripe.com/test_8wM3g3d3RcRk9683ce",
     },
   ];
@@ -49,7 +49,9 @@ export default function SubscribePlans({ loginWithGoogle }) {
       {isLoadingDB ? (
         <LoadingLoggedIn />
       ) : userDataDB.subscription ? (
-        <Text mt={20}>You are already subscribed</Text>
+        <Flex mt={20} justifyContent={"center"} alignItems={"center"}>
+          <Text>You are already subscribed</Text>
+        </Flex>
       ) : (
         <Box
           mt={"20"}

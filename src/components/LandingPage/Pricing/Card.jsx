@@ -67,7 +67,7 @@ export default function Card({
           myTheme.colors.darkMode.textColor
         )}
       >
-        <List spacing={3}>
+        {/* <List spacing={3}>
           {text.map((item, i) => (
             <ListItem key={i}>
               <ListIcon
@@ -77,7 +77,7 @@ export default function Card({
               {item}
             </ListItem>
           ))}
-        </List>
+        </List> */}
 
         {userData ? (
           <Link href={"/subscribe"}>
