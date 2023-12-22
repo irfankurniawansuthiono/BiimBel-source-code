@@ -47,7 +47,6 @@ const LinkItems = [
     href: "/subscribe",
     id: "Subscribe",
   },
-  // { name: "Settings", icon: FiSettings, href: "#" },
 ];
 
 const SidebarContent = ({ onClose, ...rest }) => {
@@ -55,7 +54,6 @@ const SidebarContent = ({ onClose, ...rest }) => {
   return (
     <Box
       id={"pageLoggedIn"}
-      transition="3s ease-in-out"
       bg={useColorModeValue(
         myTheme.colors.lightMode.background,
         myTheme.colors.darkMode.background
@@ -158,7 +156,7 @@ const MobileNav = ({ onOpen, onToggle, isOpen, ...rest }) => {
       right={"0"}
       left={"0"}
       pos="fixed"
-      zIndex={9999999}
+      zIndex={2}
       alignItems="center"
       bg={useColorModeValue(
         myTheme.colors.lightMode.background,

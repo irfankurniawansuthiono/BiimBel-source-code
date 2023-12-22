@@ -40,17 +40,17 @@ const Features = [
   {
     icon: IoTime,
     title: "Flexibility",
-    text: "Online courses can be accessed from anywhere and at any time, according to your schedule and convenience. You are not bound by the typically limited schedules of face-to-face courses.",
+    text: "BiimBel can be accessed from anywhere and at any time, according to your schedule and convenience. You are not bound by the typically limited schedules of face-to-face courses.",
   },
   {
     icon: MdOutlineAttachMoney,
     title: "Cost efficiency",
-    text: "Online courses are typically more affordable than face-to-face courses. You don't need to incur expenses for transportation, meals, or other necessities.",
+    text: "BiimBel are typically more affordable than face-to-face courses. You don't need to incur expenses for transportation, meals, or other necessities.",
   },
   {
     icon: AiOutlineCheckCircle,
     title: "Quality of content",
-    text: "Online course materials are usually of high quality and created by experts in the field. The materials are.",
+    text: "BiimBel materials are usually of high quality and created by experts in the field.",
   },
 ];
 export default function About1() {
