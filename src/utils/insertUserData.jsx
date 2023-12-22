@@ -6,9 +6,9 @@ export default async function insertUserData(data) {
       [
         {
           id: data.id,
-          name: data.fullname,
-          email: data.email,
-          phone: data.phone,
+          name: data.user_metadata.name,
+          email: data.user_metadata.email,
+          phone: data.user_metadata.phone,
         },
       ],
       { onConflict: ["id"] }
