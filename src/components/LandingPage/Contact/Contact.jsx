@@ -24,14 +24,9 @@ import {
 import { useRef } from "react";
 import { myTheme } from "../../../theme/theme";
 import emailjs from "@emailjs/browser";
-import {
-  MdPhone,
-  MdEmail,
-  MdLocationOn,
-  MdFacebook,
-  MdOutlineSubject,
-} from "react-icons/md";
-import { BsGithub, BsDiscord, BsPerson } from "react-icons/bs";
+import { MdPhone, MdEmail, MdLocationOn, MdFacebook } from "react-icons/md";
+import { BsDiscord, BsPerson, BsTwitterX } from "react-icons/bs";
+import { PiInstagramLogoFill } from "react-icons/pi";
 
 export default function Contact() {
   const form = useRef();
@@ -153,12 +148,12 @@ export default function Contact() {
                       icon={<MdFacebook size="28px" color="#FFFFFF" />}
                     />
                     <IconButton
-                      aria-label="github"
+                      aria-label="instagram"
                       variant="ghost"
                       size="lg"
                       isRound={true}
                       _hover={{ bg: "#252525" }}
-                      icon={<BsGithub size="28px" color="#FFFFFF" />}
+                      icon={<PiInstagramLogoFill size="28px" color="#FFFFFF" />}
                     />
                     <IconButton
                       aria-label="discord"
@@ -167,6 +162,14 @@ export default function Contact() {
                       isRound={true}
                       _hover={{ bg: "#252525" }}
                       icon={<BsDiscord size="28px" color="#FFFFFF" />}
+                    />
+                    <IconButton
+                      aria-label="discord"
+                      variant="ghost"
+                      size="lg"
+                      isRound={true}
+                      _hover={{ bg: "#252525" }}
+                      icon={<BsTwitterX size="28px" color="#FFFFFF" />}
                     />
                   </HStack>
                 </Box>
